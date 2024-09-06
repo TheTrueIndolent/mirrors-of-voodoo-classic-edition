@@ -1,5 +1,5 @@
-### Title: Mirrors of Voodoo
-### Add on - Script
+### Title: Mirrors of Voodoo classic edition
+### Category: Add on - Script
 ### Games: World of warcraft classic era. World of warcraft cataclysm classic.
 
 Description:
@@ -10,6 +10,6 @@ You can open the options panel in two ways:
 2. Through the game menu. Game Menu (Esc) --> Options --> AddOns.
 
 Right now, MOV can:
-- add a timer on the mirror bar, which is movable.
-- the name of the bar became movable.
-- you can create, load, and delete a profile so you can copy/paste your settings between your characters!
+- add a timer on the mirror bar, which is movable!
+- make the name of the bar movable!
+- create, load, and delete a profile so you can copy/paste your settings between your characters!
