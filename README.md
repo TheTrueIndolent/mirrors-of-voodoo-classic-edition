@@ -1,6 +1,6 @@
 ### Title: Mirrors of Voodoo
 ### Add on - Script
-### Game: World of warcraft
+### Games: World of warcraft classic era. World of warcraft cataclysm classic.
 
 Description:
 Mirrors of Voodoo (MOV) is an add on, which enchant the default mirrors bars meaning the breath, fatigue, feign death bars etc.
