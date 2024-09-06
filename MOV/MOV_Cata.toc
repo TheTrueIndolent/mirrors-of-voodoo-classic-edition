@@ -1,0 +1,15 @@
+## Interface: 40400
+## Title: Mirrors Of |cff9370D8Voodoo|r
+## Notes: Let's make some |cff9370D8Voodoo|r to the default |cff9370D8Mirrors|r Bars!
+## DefaultState: enabled
+## SavedVariables: MOVnumberC MOVcharacter
+## SavedVariablesPerCharacter: MOVplayer
+## Version: 1.02
+## Author: The_Indolent
+## X-Website: https://panosanastasiou.rocks/
+
+MOV_Virtuals.xml
+MOV_Zlave.xml
+MOV_Options_0.xml
+MOV_Options_1.xml
+MOV_Options_2.xml

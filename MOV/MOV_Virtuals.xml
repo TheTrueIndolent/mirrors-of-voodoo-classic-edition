@@ -1,0 +1,371 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="MOV_Virtuals.lua"/>
+<!-- Fonts Funky 22 -->
+	<FontFamily name="mov_FunkyFonts_22" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\skurri.ttf" height="22" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\K_Damage.ttf" height="16" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="12" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\bKAI00M.ttf" height="12" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\SKURRI_CYR.TTF" height="22" outline="NORMAL"/>
+		</Member>
+	</FontFamily>
+<!-- Fonts Funky 16 -->
+	<FontFamily name="mov_FunkyFonts_16" virtual="true">
+		<Member alphabet="roman">
+			<Font font="Fonts\skurri.ttf" height="16" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="korean">
+			<Font font="Fonts\K_Damage.ttf" height="10" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="simplifiedchinese">
+			<Font font="Fonts\ARKai_C.ttf" height="6" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="traditionalchinese">
+			<Font font="Fonts\bKAI00M.ttf" height="6" outline="NORMAL"/>
+		</Member>
+		<Member alphabet="russian">
+			<Font font="Fonts\SKURRI_CYR.TTF" height="16" outline="NORMAL"/>
+		</Member>
+	</FontFamily>
+<!-- Tabs Panel -->
+	<Frame name="movTabsPanel" frameStrata="DIALOG" frameLevel="250" enableMouse="true" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true" virtual="true">
+		<Size x="488" y="568"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-7">
+				<Texture parentKey="BGtexture" atlas="services-popup-bg">
+					<Scripts>
+						<OnLoad>
+							self:SetDesaturation(0)
+						</OnLoad>
+					</Scripts>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="ExitButton" inherits="InsecureActionButtonTemplate" frameLevel="510">
+				<Size x="16" y="16"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" x="-4" y="-4"/>
+				</Anchors>
+				<NormalTexture atlas="communities-icon-redx" desaturated="false" alpha="0.6"/>
+				<PushedTexture atlas="communities-icon-redx" desaturated="true" alpha="0.4"/>
+				<Scripts>
+					<OnEnter>
+						movEnteringMenus(self)
+						GameTooltip:SetText(movMainColor:WrapTextInColorCode(C_AddOns.GetAddOnMetadata("MOV", "Title")).."|nClick: "..movMainColor:WrapTextInColorCode("Close this Panel").."!")
+					</OnEnter>
+					<OnLeave>
+						movLeavingMenus()
+					</OnLeave>
+					<OnClick>
+						if button == "LeftButton" and down == false then
+							self:GetParent():Hide()
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>
+				PlaySound(858, "Master")
+			</OnHide>
+		</Scripts>
+	</Frame>
+<!-- Tabs button -->
+	<Button name="movTabsButton" inherits="InsecureActionButtonTemplate" frameLevel="500" virtual="true">
+		<Size x="128" y="32"/>
+		<ButtonText parentKey="Text" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER"/>
+		<NormalTexture atlas="common-gray-button-entrybox-center"/>
+		<HighlightTexture atlas="ClickCastList-ButtonHighlight" desaturated="true" alphaMode="ADD"/>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString parentKey="CenterTxt" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="-16"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+						</OnLoad>
+						<OnShow>
+							self:SetWidth(self:GetParent():GetWidth()*0.95)
+						</OnShow>
+					</Scripts>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+<!-- Panel Options -->
+	<Frame name="movOptionsPanel" inherits="InsetFrameTemplate4" frameStrata="DIALOG" frameLevel="0" enableMouse="true" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true" virtual="true">
+		<Size x="360" y="568"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-7">
+				<Texture parentKey="BGtexture" file="Interface\BlackMarket\BlackMarketBackground-Tile.blp" >
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetVertexColor(0.35, 0.35, 0.35, 1)
+							self:SetDesaturation(0.5)
+						</OnLoad>
+					</Scripts>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="TitleTxt" font="mov_FunkyFonts_22" justifyV="MIDDLE" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP" x="0" y="-14"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+							self:SetText(C_AddOns.GetAddOnMetadata("MOV", "Title").."|nVersion: "..movHighColor:WrapTextInColorCode(C_AddOns.GetAddOnMetadata("MOV", "Version")))
+						</OnLoad>
+					</Scripts>
+				</FontString>
+				<FontString parentKey="TopTxt" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="TOP" relativeKey="$parent.TitleTxt" relativePoint="BOTTOM" x="0" y="-8"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+						</OnLoad>
+						<OnShow>
+							self:SetWidth(self:GetParent():GetWidth()*0.95)
+						</OnShow>
+					</Scripts>
+				</FontString>
+				<FontString parentKey="CenterTxt" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER" x="0" y="-12"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+						</OnLoad>
+						<OnShow>
+							self:SetWidth(self:GetParent():GetWidth()*0.95)
+						</OnShow>
+					</Scripts>
+				</FontString>
+				<FontString parentKey="BottomTxt" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="BOTTOM" x="0" y="120"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+						</OnLoad>
+						<OnShow>
+							self:SetWidth(self:GetParent():GetWidth()*0.95)
+						</OnShow>
+					</Scripts>
+				</FontString>
+				<FontString parentKey="BottomRightTxt" font="Game13FontShadow" justifyV="MIDDLE" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-2" y="4"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+							self:SetText(C_AddOns.GetAddOnMetadata("MOV", "X-Website"))
+						</OnLoad>
+						<OnShow>
+							self:SetWidth(self:GetParent():GetWidth()*0.95)
+						</OnShow>
+					</Scripts>
+				</FontString>
+				<FontString parentKey="BottomLeftTxt" font="Game13FontShadow" justifyV="MIDDLE" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="4" y="4"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movMainColor:GetRGB())
+							self:SetText("Created by: ".. C_AddOns.GetAddOnMetadata("MOV", "Author"))
+						</OnLoad>
+						<OnShow>
+							self:SetWidth(self:GetParent():GetWidth()*0.95)
+						</OnShow>
+					</Scripts>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow>
+				PlaySound(855, "Master")
+			</OnShow>
+		</Scripts>
+	</Frame>
+<!-- Box Options -->
+	<Frame name="movOptionsBox" frameStrata="DIALOG" frameLevel="200" enableMouse="false" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="false" virtual="true">
+		<Layers>
+			<Layer level="BORDER">
+				<Texture parentKey="BorderTop" file="Interface\Common\ThinBorder2-Top">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="3" y="0"/>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" x="-3" y="0"/>
+					</Anchors>
+					<Size y="4"/>
+					<Scripts>
+						<OnLoad>
+							self:SetVertexColor(movMainColor:GetRGB())
+						</OnLoad>
+					</Scripts>
+				</Texture>
+				<Texture parentKey="BorderBottom" file="Interface\Common\ThinBorder2-Top">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="3" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-3" y="0"/>
+					</Anchors>
+					<Size y="4"/>
+					<Scripts>
+						<OnLoad>
+							self:SetVertexColor(movMainColor:GetRGB())
+						</OnLoad>
+					</Scripts>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="TitleTxt" font="mov_FunkyFonts_16" justifyV="MIDDLE" justifyH="CENTER" >
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP" x="0" y="-6"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							self:SetTextColor(movHighColor:GetRGB())
+						</OnLoad>
+					</Scripts>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+<!-- Button -->
+	<Button name="movOptionsButton" inherits="InsecureActionButtonTemplate" frameLevel="500" virtual="true">
+		<Size x="176" y="34"/>
+		<ButtonText parentKey="Text" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER">
+			<Scripts>
+				<OnLoad>
+					self:SetTextColor(movMainColor:GetRGB())
+				</OnLoad>
+			</Scripts>
+		</ButtonText>
+		<NormalTexture atlas="common-dropdown-classic-textholder" >
+			<Scripts>
+				<OnLoad>
+					self:SetVertexColor(movMainColor:GetRGB())
+					self:SetDesaturation(1)
+				</OnLoad>
+			</Scripts>
+		</NormalTexture>
+		<PushedTexture atlas="groupfinder-button-cover-down" >
+			<Scripts>
+				<OnLoad>
+					self:SetVertexColor(movMainColor:GetRGB())
+					self:SetDesaturation(1)
+				</OnLoad>
+			</Scripts>
+		</PushedTexture>
+		<HighlightTexture atlas="ClickCastList-ButtonHighlight" desaturated="false" alphaMode="ADD"/>
+	</Button>
+<!-- Pop Out -->
+	<Button name="movPopOut" frameStrata="DIALOG" frameLevel="525" virtual="true">
+		<Size x="176" y="32" />
+		<ButtonText parentKey="Text" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER">
+			<Scripts>
+				<OnLoad>
+					self:SetTextColor(movMainColor:GetRGB())
+				</OnLoad>
+			</Scripts>
+		</ButtonText>
+		<NormalTexture atlas="charactercreate-customize-dropdownbox-open">
+			<Scripts>
+				<OnLoad>
+					self:SetVertexColor(movMainColor:GetRGB())
+				</OnLoad>
+			</Scripts>
+		</NormalTexture>
+		<PushedTexture atlas="charactercreate-customize-dropdownbox"/>
+		<HighlightTexture atlas="charactercreate-customize-dropdownbox-hover" alphaMode="ADD"/>
+		<Frames>
+<!-- Choice 0 -->
+			<Button name="$parentChoice0" inherits="InsecureActionButtonTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="4"/>
+				</Anchors>
+				<Size x="160" y="24"/>
+				<ButtonText parentKey="Text" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER"/>
+				<NormalTexture atlas="AftLevelup-ToastBG"/>
+				<HighlightTexture atlas="ClickCastList-ButtonHighlight" desaturated="true" alphaMode="ADD"/>
+				<Scripts>
+					<OnLoad>
+						self.Text:SetTextColor(movMainColor:GetRGB())
+					</OnLoad>
+					<OnShow>
+						self:GetParent():SetNormalAtlas("charactercreate-customize-dropdownbox-hover")
+					</OnShow>
+					<OnHide>
+						self:GetParent():SetNormalAtlas("charactercreate-customize-dropdownbox-open")
+						PlaySound(858, "Master")
+					</OnHide>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Button>
+<!-- Pop Out Button -->
+	<Button name="movPopOutButton" frameStrata="DIALOG" frameLevel="750" virtual="true">
+		<Size x="160" y="24"/>
+		<ButtonText parentKey="Text" font="Game13FontShadow" justifyV="MIDDLE" justifyH="CENTER"/>
+		<NormalTexture atlas="AftLevelup-ToastBG"/>
+		<HighlightTexture atlas="ClickCastList-ButtonHighlight" desaturated="true" alphaMode="ADD"/>
+		<Scripts>
+			<OnLoad>
+				self.Text:SetTextColor(movMainColor:GetRGB())
+			</OnLoad>
+		</Scripts>
+	</Button>
+<!-- Edit Box -->
+	<Frame name="movEditBox" inherits="GlowBoxTemplate" frameStrata="DIALOG" frameLevel="510" enableMouse="true" clampedToScreen="true" virtual="true">
+		<Size x="256" y="16"/>
+		<Frames>
+			<EditBox parentKey="WritingLine" inherits="InputBoxScriptTemplate" frameStrata="DIALOG" font="GameFontHighlight" letters="0" blinkSpeed="0.5" numeric="false" alphabeticOnly="false" password="false" multiLine="0" historyLines="0" autoFocus="false" ignoreArrows="false" countInvisibleLetters="false" invisibleBytes="nil">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="CENTER" x="0" y="0"/>
+				</Anchors>
+			</EditBox>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self["GlowTopLeft"]:SetDesaturation(1)
+				self["GlowTopLeft"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowTopRight"]:SetDesaturation(1)
+				self["GlowTopRight"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowBottomLeft"]:SetDesaturation(1)
+				self["GlowBottomLeft"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowBottomRight"]:SetDesaturation(1)
+				self["GlowBottomRight"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowTop"]:SetDesaturation(1)
+				self["GlowTop"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowBottom"]:SetDesaturation(1)
+				self["GlowBottom"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowLeft"]:SetDesaturation(1)
+				self["GlowLeft"]:SetVertexColor(movMainColor:GetRGB())
+				self["GlowRight"]:SetDesaturation(1)
+				self["GlowRight"]:SetVertexColor(movMainColor:GetRGB())
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

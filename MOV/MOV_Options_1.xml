@@ -1,0 +1,54 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Frame name="movOptions1" inherits="movOptionsPanel" parent="UIParent">
+		<Anchors>
+			<Anchor point="RIGHT" relativePoint="RIGHT" x="0" y="0"/>
+		</Anchors>
+		<Frames>
+<!-- First Options Box -->
+			<Frame name="$parentBox1" inherits="movOptionsBox">
+				<Anchors>
+					<Anchor point="TOP" relativeKey="$parent.TopTxt" relativePoint="BOTTOM" x ="0" y="-8"/>
+				</Anchors>
+				<Size x="360" y="72"/>
+				<Frames>
+<!-- Pop Out Button 1 Mirror's Name -->
+					<EventButton name="$parentPopOut1" inherits="movPopOut">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeKey="$parent.TitleTxt" relativePoint="BOTTOM" x="0" y="-8"/>
+						</Anchors>
+						<Frames>
+							<Button name="$parentChoice1" inherits="movPopOutButton"/>
+							<Button name="$parentChoice2" inherits="movPopOutButton"/>
+							<Button name="$parentChoice3" inherits="movPopOutButton"/>
+							<Button name="$parentChoice4" inherits="movPopOutButton"/>
+							<Button name="$parentChoice5" inherits="movPopOutButton"/>
+							<Button name="$parentChoice6" inherits="movPopOutButton"/>
+							<Button name="$parentChoice7" inherits="movPopOutButton"/>
+							<Button name="$parentChoice8" inherits="movPopOutButton"/>
+							<Button name="$parentChoice9" inherits="movPopOutButton"/>
+						</Frames>
+					</EventButton>
+<!-- Pop Out Button 2 Mirror's Time -->
+					<EventButton name="$parentPopOut2" inherits="movPopOut">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentPopOut1" relativePoint="RIGHT" x="0" y="0"/>
+						</Anchors>
+						<Frames>
+							<Button name="$parentChoice1" inherits="movPopOutButton"/>
+							<Button name="$parentChoice2" inherits="movPopOutButton"/>
+							<Button name="$parentChoice3" inherits="movPopOutButton"/>
+							<Button name="$parentChoice4" inherits="movPopOutButton"/>
+							<Button name="$parentChoice5" inherits="movPopOutButton"/>
+							<Button name="$parentChoice6" inherits="movPopOutButton"/>
+							<Button name="$parentChoice7" inherits="movPopOutButton"/>
+							<Button name="$parentChoice8" inherits="movPopOutButton"/>
+							<Button name="$parentChoice9" inherits="movPopOutButton"/>
+						</Frames>
+					</EventButton>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Script file="MOV_Options_1.lua"/>
+</Ui>
