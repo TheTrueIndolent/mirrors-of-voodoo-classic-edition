@@ -106,7 +106,7 @@
 		</Layers>
 	</Button>
 <!-- Panel Options -->
-	<Frame name="movOptionsPanel" inherits="InsetFrameTemplate4" frameStrata="DIALOG" frameLevel="0" enableMouse="true" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true" virtual="true">
+	<Frame name="movOptionsPanel" inherits="InsetFrameTemplate4" frameStrata="DIALOG" frameLevel="0" enableKeyboard="true" enableMouse="true" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true" virtual="true">
 		<Size x="360" y="568"/>
 		<Layers>
 			<Layer level="BACKGROUND" textureSubLevel="-7">
@@ -205,6 +205,9 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnKeyDown>
+				if key == "ESCAPE" then self:SetPropagateKeyboardInput(false) self:Hide() else self:SetPropagateKeyboardInput(true) end
+			</OnKeyDown>
 			<OnShow>
 				PlaySound(855, "Master")
 			</OnShow>
