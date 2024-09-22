@@ -4,7 +4,7 @@
 ## DefaultState: enabled
 ## SavedVariables: MOVnumberC MOVcharacter
 ## SavedVariablesPerCharacter: MOVplayer
-## Version: 1.02
+## Version: 1.04
 ## Author: The_Indolent
 ## X-Website: https://panosanastasiou.rocks/
 
